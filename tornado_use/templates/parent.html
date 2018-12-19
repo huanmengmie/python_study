@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}父模块{% end %}</title>
+</head>
+<body>
+    在块外的内容，不可以修改。
+    {% block header %}
+        在block块中的内容，可以修改
+    {% end %}
+
+    {% block body %}
+    {% end %}
+</body>
+</html>

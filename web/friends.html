@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CGI demo</title>
+</head>
+<body>
+    <h3>好友列表-》新朋友</h3>
+    <form action="friends.py">
+        <b>请输入姓名：</b>
+        <input type="text" name="name" placeholder="新朋友"><br>
+
+        <p>
+            <b>你有多少朋友了？</b>
+            <input type="radio" name="number" value="0"> 0
+            <input type="radio" name="number" value="10"> 10
+            <input type="radio" name="number" value="25"> 25
+            <input type="radio" name="number" value="50"> 50
+            <input type="radio" name="number" value="100"> 100
+        </p>
+        <p><input type="submit" value="提交"></p>
+    </form>
+</body>
+</html>
