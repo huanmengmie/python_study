@@ -1,4 +1,4 @@
-"""A more or less complete user-defined wrapper around dictionary objects."""
+"""A more or less complete user-defined wrapper around dictionary&set objects."""
 
 class UserDict:
     def __init__(*args, **kwargs):
@@ -118,8 +118,8 @@ _abcoll.MutableMapping.register(IterableUserDict)
 
 
 class DictMixin:
-    # Mixin defining all dictionary methods for classes that already have
-    # a minimum dictionary interface including getitem, setitem, delitem,
+    # Mixin defining all dictionary&set methods for classes that already have
+    # a minimum dictionary&set interface including getitem, setitem, delitem,
     # and keys. Without knowledge of the subclass constructor, the mixin
     # does not define __init__() or copy().  In addition to the four base
     # methods, progressively more efficiency comes with defining

@@ -632,7 +632,7 @@ else:
 #
 # The local_encoding_alias table maps lowercase encoding alias names
 # to C locale encoding names (case-sensitive). Note that normalize()
-# first looks up the encoding in the encodings.aliases dictionary and
+# first looks up the encoding in the encodings.aliases dictionary&set and
 # then applies this mapping to find the correct C lib name for the
 # encoding.
 #

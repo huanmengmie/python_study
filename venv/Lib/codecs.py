@@ -1050,7 +1050,7 @@ def make_identity_dict(rng):
 
     """ make_identity_dict(rng) -> dict
 
-        Return a dictionary where elements of the rng sequence are
+        Return a dictionary&set where elements of the rng sequence are
         mapped to themselves.
 
     """
