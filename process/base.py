@@ -31,7 +31,7 @@ def long_time_task(task):
         end = time.time()
     except BaseException as e:
         print(e)
-    print("任务%s=>%s结束了，耗时%0.2f" % (task, os.getpid(), (end-start)))
+    print("任务%s=>%s结束了，耗时%0.2f" % (task, os.getpid(), (end - start)))
 
 
 def pool_test():

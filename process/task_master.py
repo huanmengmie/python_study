@@ -22,8 +22,13 @@ def return_result_queue():
 
 if __name__ == '__main__':
 
-    QueueManager.register("get_task_queue", callable=return_task_queue)
-    QueueManager.register("get_result_queue", callable=return_result_queue)
+    # windows 版本
+    # QueueManager.register("get_task_queue", callable=return_task_queue)
+    # QueueManager.register("get_result_queue", callable=return_result_queue)
+
+    # linux 版本
+    QueueManager.register("get_task_queue", callable=lambda: task_queue)
+    QueueManager.register("get_result_queue", callable=lambda: result_queue)
 
     sever_address = "127.0.0.1"
     manager = QueueManager(address=(sever_address, 5000), authkey=b'123456')
