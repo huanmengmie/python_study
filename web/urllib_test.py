@@ -1,6 +1,6 @@
 # -*- coding:UTF-8 -*-
 
-from urllib import *
+from urllib_test import *
 
 # f = urlopen('http://fanyi.baidu.com/?aldtype=16047#en/zh/retrieve')
 # lines = f.readlines()

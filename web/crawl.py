@@ -7,7 +7,7 @@ from htmllib import HTMLParser
 from os import makedirs, unlink, sep
 from os.path import dirname, exists, isdir, splitext
 from string import replace, find, lower
-from urllib import urlretrieve
+from urllib_test import urlretrieve
 from urlparse import urlparse, urljoin
 from cStringIO import StringIO
 

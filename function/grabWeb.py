@@ -1,7 +1,6 @@
 # -*- coding:UTF-8 -*-
 """ 抓取web页面 """
-
-from urllib import urlretrieve
+from urllib.request import urlretrieve
 
 def firstNonBlank(lines):
     for eachLine in lines:
@@ -14,9 +13,9 @@ def firstLast(webpage):
     f = open(webpage)
     lines = f.readlines()
     f.close()
-    print firstNonBlank(lines)
+    print (firstNonBlank(lines))
     lines.reverse()
-    print firstNonBlank(lines)
+    print (firstNonBlank(lines))
 
 
 def download(url = 'https://www.baidu.com/',process = firstLast):
