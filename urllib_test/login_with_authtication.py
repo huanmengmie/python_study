@@ -9,6 +9,7 @@ import requests
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf8')  # 改变标准输出的默认编码
 
 
+# urllib.request
 # 模拟登录后再携带得到的cookie访问
 def test1():
     data = [
@@ -53,22 +54,30 @@ def test1():
     print(resp2.read().decode('utf-8'))
 
 
+# requests
+# 使用session保持会话状态
 def test2():
-    data = {
-        "username": 'admin',
-        "password": 'a1234567',
-        "action_type": 'user_login',
-        "company_type": 30
-    }
-    login_url = r'http://localhost:8888/auth/login'
+    data = [
+        ("username", 'admin'),
+        ("password", 'a1234567'),
+        ("action_type", "user_login"),
+        ("company_type", 30)
+    ]
 
-    resp = requests.post(login_url, params=data)
-    print(resp.cookies)
+    login_url = 'http://localhost:8888/auth/login'
 
-    url = r"http://localhost:8888/web/order_manage"
-    resp2 = requests.get(url, cookies=resp.cookies)
-    print(resp2.__dict__)
-    print(resp2.text)
+    # 构造session
+    session = requests.Session()
+
+    # 在session中发送登录请求，此后这个session里就存储了cookie
+    # 可以用print(session.cookies.get_dict())查看
+    session.post(login_url, data)
+    print(session.cookies.get_dict())
+
+    # 登录后才能访问的网页
+    url = "http://localhost:8888/web/order_manage"
+    resp2 = session.get(url)
+    print(resp2.content.decode('utf-8'))
 
 
 if __name__ == "__main__":
