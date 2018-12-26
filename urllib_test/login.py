@@ -1,25 +1,17 @@
 # -*- coding:UTF-8 -*-
 import http.cookiejar
+import io
+import sys
 from urllib import request, parse
 
+import requests
 
-# 通过已有的cookie值模拟登录
-def test1(cookie, url, filename):
-    req = request.Request(url)
-    req.add_header("cookie", cookie)
-    req.add_header("User-Agent",
-                   r"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36")
-
-    with request.urlopen(req) as resp:
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(resp.read().decode('utf-8'))
-            print(resp.read().decode('utf-8'))
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf8')  # 改变标准输出的默认编码
 
 
-# 通过用户名密码登录
-def test2():
-    # name = input("请输入账号:")
-    # password = input("请输入密码:")
+
+# 使用session保持会话状态
+def test3():
     data = [
         ("username", 'admin'),
         ("password", 'a1234567'),
@@ -27,47 +19,22 @@ def test2():
         ("company_type", 30)
     ]
 
-    # req = request.Request('http://localhost:8888/auth/login')
-    # req.add_header('Origin', 'http://localhost:8888')
-    # req.add_header('User-Agent',
-    #                'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36')
-    # req.add_header('Referer',
-    #                'http://localhost:8888/auth/login')
-    headers = {
-        'Origin': 'http://localhost:8888',
-        'User-Agent':
-            'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36',
-        'Referer': 'http://localhost:8888/auth/login'
-    }
-    login_url = r'http://localhost:8888/auth/login'
+    login_url = 'http://10.0.27.7:8888/auth/login'
 
-    login_data = parse.urlencode(data).encode('utf-8')
-    print(login_data)
+    # 构造session
+    session = requests.Session()
 
-    # 构造登录请求
-    req = request.Request(login_url, headers=headers, data=login_data)
+    # 发送登录请求，此后这个opener就携带了session，以证明自己登录过
+    resp = session.post(login_url, data)
 
-    # 构造cookie
-    cookie = http.cookiejar.CookieJar()
+    print(resp.__dict__)
 
-    # 由cookie构造opener
-    opener = request.build_opener(request.HTTPCookieProcessor(cookie))
+    # 登录后才能访问的网页
+    url = "http://10.0.27.7:8888/web/order_manage"
 
-    # 发送登录请求，此后这个opener就携带了cookie，以证明自己登录过
-    resp = opener.open(req)
+    resp2 = session.get(url)
 
-    for k, v in resp.getheaders():
-        print('%s: %s' % (k, v))
-
-    # # 登录后才能访问的网页
-    # url = r"http://10.0.27.7:8888/web/order_manage"
-    #
-    # # 构造访问请求
-    # req = request.Request(url, headers=headers)
-    #
-    # resp = opener.open(req)
-
-    # print(resp.read().decode('utf-8'))
+    print(resp2.content.decode('utf-8'))
 
 
 if __name__ == "__main__":
@@ -75,4 +42,7 @@ if __name__ == "__main__":
     # url = r"http://10.0.27.7:8888/web/order_manage"
     # filename = r"D:/test.html"
     # test1(cookie, url, filename)
-    test2()
+
+    # test2()
+
+    test3()
