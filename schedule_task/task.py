@@ -1,10 +1,15 @@
 # -*- coding:UTF-8 -*-
+
+"""
+定时任务
+    每5秒调用一次hello()方法
+"""
 from twisted.internet import reactor, task
 from twisted.python import log
 
 
 def hello():
-    print 'hello'
+    print('hello')
 
 
 def err_callback(e, t):

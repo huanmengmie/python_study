@@ -2,8 +2,8 @@
 from sqlalchemy import ForeignKey, Column, Integer, String, func, select,and_
 from sqlalchemy.orm import relationship
 
-from sqlalchemy_use.model import Base
-# from sqlalchemy_use.model.user import User
+from sqlalchemy_test.model import Base
+# from sqlalchemy_test.model.user import User
 
 
 class Address(Base):

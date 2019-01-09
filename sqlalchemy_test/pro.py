@@ -5,8 +5,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from sqlalchemy_use.model.address import Address
-from sqlalchemy_use.model.user import User
+from sqlalchemy_test.model.address import Address
+from sqlalchemy_test.model.user import User
 
 reload(sys)
 sys.setdefaultencoding('utf-8') 
