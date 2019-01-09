@@ -3,8 +3,8 @@
 from sqlalchemy import Column, Integer, String, select, exists, and_
 from sqlalchemy.orm import relationship
 
-from sqlalchemy_use.model import Base
-from sqlalchemy_use.model.address import Address
+from sqlalchemy_test.model import Base
+from sqlalchemy_test.model.address import Address
 
 
 class User(Base):
