@@ -1,9 +1,12 @@
 # -*- coding:UTF-8 -*-
+"""
+    进程与进程池
+"""
+
 import time
 from multiprocessing import Process, Pool
 import os
 import random
-from random import Random
 
 
 def run_proc(name):
@@ -25,7 +28,6 @@ def long_time_task(task):
     print("任务%s=>%s开始了" % (task, os.getpid()))
     try:
         start = time.time()
-        # time.sleep(Random.random() * 4)
         t = random.random() * 4
         time.sleep(t)
         end = time.time()
@@ -35,7 +37,7 @@ def long_time_task(task):
 
 
 def pool_test():
-    # 使用线程池创建任务
+    # 使用进程池创建任务
     print("主任务%s开始了" % os.getpid())
     p = Pool(5)
     for i in range(8):

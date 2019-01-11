@@ -7,6 +7,9 @@ tcp_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 local_addr = ("", 9528)
 tcp_server.bind(local_addr)
 
+# 设置端口可重用，解决tcp断开链接所导致的端口占用问题
+tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
 # 监听客户端链接，将套接字由主动改为被动
 tcp_server.listen(10)
 

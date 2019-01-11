@@ -1,6 +1,11 @@
 # -*- coding:UTF-8 -*-
+"""
+    分布式进程
+    进程间通信 queue
+"""
 from multiprocessing.managers import BaseManager
-import queue, random
+import queue
+import random
 
 task_queue = queue.Queue()
 result_queue = queue.Queue()
@@ -20,8 +25,7 @@ def return_result_queue():
     return result_queue
 
 
-if __name__ == '__main__':
-
+def main():
     # windows 版本
     # QueueManager.register("get_task_queue", callable=return_task_queue)
     # QueueManager.register("get_result_queue", callable=return_result_queue)
@@ -50,3 +54,7 @@ if __name__ == '__main__':
     # 关闭
     manager.shutdown()
     print("主进程结束")
+
+
+if __name__ == '__main__':
+    main()
