@@ -47,22 +47,22 @@
 j, k = 1, 2
 def proc1():
     j,k = 3,4
-    print 'p1:j == %d and k == %d' % (j,k)        # 3,4
+    print ('p1:j == %d and k == %d' % (j,k))        # 3,4
     k = 5
 
 def proc2():
     j = 6
     proc1()                                        # 3，4
-    print 'p2:j == %d and k == %d' % (j, k)        # 6,7
+    print ('p2:j == %d and k == %d' % (j, k))        # 6,7
 
 
 k = 7
 proc1()                                             # 3,4
-print 'a1:j == %d and k == %d' % (j,k)             # 1,7
+print ('a1:j == %d and k == %d' % (j,k))            # 1,7
 
 j = 8
 proc2()                                     # 3,4      3,5
-print 'a2:j == %d and k == %d' % (j,k)             #8,7
+print ('a2:j == %d and k == %d' % (j,k))           #8,7
 
 rows = [1,2,3,17]
 def cols():
@@ -71,4 +71,4 @@ def cols():
     yield 1
 
 for pair in ((i,j) for i in rows for j in cols()):
-    print pair
+    print (pair)
