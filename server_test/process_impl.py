@@ -40,7 +40,7 @@ def main():
     tcp_server = socket.socket()
     # 设置可重用端口号
     tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    tcp_server.bind(("", 9527))
+    tcp_server.bind(("", 9529))
     tcp_server.listen(128)
 
     while True:

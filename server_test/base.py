@@ -20,7 +20,7 @@ def handle(client_socket):
         if ret:
             req_info = ret.group(1).split(sep='?')
             req_file = req_info[0]
-            time.sleep(5)  # 模拟延迟
+            # time.sleep(5)  # 模拟延迟
             if os.path.isfile('./pages' + req_file):
                 with open('./pages' + req_file, 'rb') as file:
                     response_body = file.read()
@@ -39,7 +39,7 @@ def main():
     tcp_server = socket.socket()
     # 设置可重用端口号
     tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    tcp_server.bind(("", 9527))
+    tcp_server.bind(("", 9525))
     tcp_server.listen(128)
 
     while True:
