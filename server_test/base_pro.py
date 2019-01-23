@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-    多线程版本
+    长连接,非阻塞实现并发
+    轮询列表
 """
 import os
 import re
 import socket
-import threading
-import time
 
 
-def handle(client_socket):
+def handle(client_socket, request):
     print("=" * 50)
-    request = client_socket.recv(1024).decode('utf-8')
-    print(request)
     request_list = request.splitlines()
     response_header = 'HTTP/1.1 200 OK\r\n'
     response_body = b''
@@ -21,7 +18,6 @@ def handle(client_socket):
         if ret:
             req_info = ret.group(1).split(sep='?')
             req_file = req_info[0]
-            time.sleep(1)
             if os.path.isfile('./pages' + req_file):
                 with open('./pages' + req_file, 'rb') as file:
                     response_body = file.read()
@@ -33,20 +29,37 @@ def handle(client_socket):
     response_header += '\r\n'
     response_info = response_header.encode('utf-8') + response_body
     client_socket.send(response_info)
-    client_socket.close()
 
 
 def main():
     tcp_server = socket.socket()
     # 设置可重用端口号
     tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    tcp_server.bind(("", 9528))
+    # 设置socket为非阻塞
+    tcp_server.setblocking(False)
+    tcp_server.bind(("", 9526))
     tcp_server.listen(128)
 
+    client_socket_list = []
     while True:
-        new_socket, client_addr = tcp_server.accept()
-        t = threading.Thread(target=handle, args=(new_socket,))
-        t.start()
+        try:
+            new_socket, client_addr = tcp_server.accept()
+        except BlockingIOError as e:
+            pass
+        else:
+            new_socket.setblocking(False)
+            client_socket_list.append(new_socket)
+
+            for cli_socket in client_socket_list:
+                try:
+                    recv_data = cli_socket.recv(1024).decode('utf-8')
+                except BlockingIOError as ret:
+                    pass
+                else:
+                    if recv_data:
+                        handle(cli_socket, recv_data)
+                    else:
+                        client_socket_list.remove(cli_socket)
 
 
 if __name__ == '__main__':

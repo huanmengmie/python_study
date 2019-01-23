@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-    携程实现
+    协程实现
 """
 import os
 import re
 import socket
-import multiprocessing
 import time
 import gevent
 from gevent import monkey
@@ -13,6 +12,7 @@ from gevent import monkey
 
 # 将所有可能造成延时阻塞的方法改为调用gevent中提供的对象
 monkey.patch_all()
+
 
 def handle(client_socket):
     print("=" * 50)
@@ -45,7 +45,7 @@ def main():
     tcp_server = socket.socket()
     # 设置可重用端口号
     tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    tcp_server.bind(("", 9527))
+    tcp_server.bind(("", 9530))
     tcp_server.listen(128)
 
     while True:
