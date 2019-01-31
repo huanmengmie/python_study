@@ -7,7 +7,7 @@ import os
 import re
 import socket
 import multiprocessing
-from server_wsgi_test.third_framework import application
+from pro.server_wsgi_test.third_framework import application
 import sys
 
 

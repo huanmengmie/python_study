@@ -35,7 +35,7 @@ if __name__ == "__main__":
     )
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
-    print ('server start,click http://localhost:%d' % options.port)
+    print('server start,click http://localhost:%d' % options.port)
     tornado.ioloop.IOLoop.instance().start()
 
 

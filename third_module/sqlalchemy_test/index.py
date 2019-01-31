@@ -5,8 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import sys
 
-from sqlalchemy_test.model.address import Address
-from sqlalchemy_test.model.user import User
+from third_module.sqlalchemy_test.model.user import User
 
 
 reload(sys)
@@ -35,26 +34,26 @@ session = DbSession()
 #
 # user.name = 'test'
 #
-# print 'dirty',session.dirty
-# print 'new',session.new
+# print('dirty',session.dirty
+# print('new',session.new
 # specialUsers = session.query(User).filter(User.name.in_(['ed',"三少"])).all()       # in
-# print 'specialUsers',specialUsers
+# print('specialUsers',specialUsers
 #
 
 # add = Address()
 # id = add.new_address(session,'skdfjl@163.com',3)
-# print id
+# print(id
 # lists = add.find_all(session)
-# print lists
+# print(lists
 u = User()
 res = u.find_user_with_email(session,1)
 for item in res:
-    print item
+    print(item
 session.commit()
 
 # 查询方法
 # specialUsers = session.query(User).filter(~User.name.in_(['ed',"三少"])).all()       # not in
-# print 'not specialUsers',specialUsers
+# print('not specialUsers',specialUsers
 #
 # for item in session.query(User).order_by(User.id)[3:5]:
-#     print item
+#     print(item

@@ -5,19 +5,19 @@
 dict1 = {'name': 'jame', 'age': '18'}
 #   工厂方法 dict()
 fdict = dict((['x', 1], ['y',4]))
-print fdict         # =>  {'y': 4, 'x': 1}
+print(fdict)      # =>  {'y': 4, 'x': 1}
 fdict2 = dict(zip(('x', 'y'), (1, 2)))  # zip()=> [('x', 1), ('y', 2)]
-print fdict2        # =>  {'y': 2, 'x': 1}
+print(fdict2)        # =>  {'y': 2, 'x': 1}
 a = [('xy'[i-1], i) for i in range(1,3)]  # => [('x', 1), ('y', 2)]
 fdict3 = dict(a)
-print fdict3        # =>  {'y': 2, 'x': 1}
+print(fdict3)        # =>  {'y': 2, 'x': 1}
 
 #   内建方法 fromkeys()
 ddict = {}.fromkeys(('x','y','z'),-1)
-print ddict         # =>    {'y': -1, 'x': -1, 'z': -1}
+print(ddict)         # =>    {'y': -1, 'x': -1, 'z': -1}
 
 dic = {None: 'test','test':None}
-print dic
+print(dic)
 
 # 字典中key和value都可以为None值，但是其key不允许重复，且必须为数字和字符串等可以哈希的对象，而不能使用列表和字典
 # 值相等的数字，哈希值相等表示相同的键
@@ -25,7 +25,7 @@ print dic
 
 # 在字典中使用字符串格式符 % 的特别用法
 dic2 = {'name': 'jame', 'age': 18, 'sex': '男'}
-print '%(name)s是一个%(age)d岁的%(sex)s人' %dic2
+print('%(name)s是一个%(age)d岁的%(sex)s人' %dic2)
 
 # 字典的比较方法
 # 先比较字典大小，然后是键，最后是值

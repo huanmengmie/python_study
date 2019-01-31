@@ -5,7 +5,7 @@ from functools import reduce
 def test():
     try:
         result = 10/0
-        print ("出错了")
+        print("出错了")
         return 1
     except ZeroDivisionError as e:
         return 0

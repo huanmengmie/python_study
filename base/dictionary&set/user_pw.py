@@ -5,24 +5,24 @@ db = {}
 def newUser():
     prompt = 'enter your name: '
     while True:
-        name = raw_input(prompt)
+        name = input(prompt)
         if name in db:
             prompt = 'name taken, try another: '
             continue
         else:
             break
-    pwd = raw_input('password: ')
+    pwd = input('password: ')
     db[name] = pwd
 
 
 def login():
-    name = raw_input("name: ")
-    pwd = raw_input("pwd: ")
+    name = input("name: ")
+    pwd = input("pwd: ")
     passwd = db.get(name)
     if pwd == passwd:
-        print 'welcome',name
+        print('welcome',name)
     else:
-        print 'login incorrect'
+        print('login incorrect')
 
 
 def showMenu():
@@ -36,10 +36,10 @@ def showMenu():
     while not done:
         chose = False
         while not chose:
-            choice = raw_input(prompt).strip()[0].lower()
-            print '\n you picker [%s]' % choice
+            choice = input(prompt).strip()[0].lower()
+            print('\n you picker [%s]' % choice)
             if choice not in 'nlq':
-                print 'invalid option, try again'
+                print('invalid option, try again')
             else:
                 chose = True
         if choice == 'n':

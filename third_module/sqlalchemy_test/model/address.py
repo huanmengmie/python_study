@@ -1,8 +1,8 @@
 # -*- coding:UTF-8 -*-
-from sqlalchemy import ForeignKey, Column, Integer, String, func, select,and_
+from sqlalchemy import ForeignKey, Column, Integer, String, func, select
 from sqlalchemy.orm import relationship
 
-from sqlalchemy_test.model import Base
+from third_module.sqlalchemy_test import Base
 # from sqlalchemy_test.model.user import User
 
 
@@ -14,7 +14,7 @@ class Address(Base):
     user = relationship("User", back_populates="addresses")
     
     def __repr__(self):
-        print "<Address(email_address = '%s')>" % self.email_address
+        print("<Address(email_address = '%s')>" % self.email_address
 
 
     @classmethod

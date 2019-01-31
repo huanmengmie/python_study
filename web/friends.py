@@ -17,4 +17,4 @@ Content-Type:text/html\r\n
 form = cgi.FieldStorage()
 who = form['name'].value
 number = form['number'].value
-print reshtml % (who, number)
+print(reshtml % (who, number))
