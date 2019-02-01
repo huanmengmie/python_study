@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     Python支持多继承
-    super().__init__(),根据mro继承链的顺序,一步步的向上继承,确保每个类只会被调用一次
+    super().__init__(),根据mro继承链的顺序,一步步的向上继承,确保每个类只会被调用self一次
 
     GrandSon init start
     Son1 init start
@@ -42,7 +42,7 @@ class Son2(Parent):
 class GrandSon(Son1, Son2):
     def __init__(self, name, age, sex, *args, **kwargs):
         print("GrandSon init start")
-        super().__init__(name,age, sex, *args, **kwargs)
+        super().__init__(name, age, sex, *args, **kwargs)
         print("GrandSon init end")
 
 
