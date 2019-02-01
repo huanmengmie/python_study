@@ -7,7 +7,7 @@
 # aHandle = open('note.txt', 'a')   在已有内容上追加
 # aHandle.writelines("\nPython代码添加内容到文件中")
 # aHandle.close()
-# print "书写完毕"
+# print("书写完毕"
 
 wHandle = open('../test.txt','w')  # 覆盖原有内容
 wHandle.writelines("Python代码写内容到文件中")
@@ -15,10 +15,10 @@ wHandle.close()
 
 # rHandle = open('D:/workspace/python_study/test.txt','r')
 # for eachline in rHandle:
-#     print eachline,       # 加“，”可以抑制其自动生成换行符号
+#     print(eachline,       # 加“，”可以抑制其自动生成换行符号
 # rHandle.close()
 # print
-# print '读完了'
+# print('读完了'
 
 
 # ValueError: mode string must begin with one of 'r', 'w', 'a' or 'U', not 'b'
@@ -27,10 +27,10 @@ wHandle.close()
 #     rw = open('../test.txt', 'a')
 #     rw.writelines('\n读写模式下，写入新的内容')
 #     for eachline in rw:
-#         print eachline
+#         print(eachline
 #     rw.close()
 # except ValueError , e:
-#     print '文件操作模式出错：',e
+#     print('文件操作模式出错：',e
 # except IOError , e:
-#     print '操作文件出错：',e
+#     print('操作文件出错：',e
 

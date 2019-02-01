@@ -7,9 +7,9 @@
 #      值     对象表示的数据项
 
 if 0 :
-    print 0
+    print(0
 else:
-    print 1
+    print(1
 
 # 标准类型操作符
 #   A、对象值比较

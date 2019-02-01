@@ -8,7 +8,7 @@ import shutil
 # aHandle = open('note.txt', 'a',encoding="utf8")  # 在已有内容上追加
 # aHandle.writelines("\nPython代码添加内容到文件中")
 # aHandle.close()
-# print ("书写完毕")
+# print("书写完毕")
 
 # wHandle = open('../test.txt','w')  # 覆盖原有内容
 # wHandle.writelines("Python代码写内容到文件中")
@@ -19,18 +19,18 @@ for line in rHandle.readlines():
     print(line.strip()),      # 加“，”可以抑制其自动生成换行符号
 print(rHandle.read())
 rHandle.close()
-print ('读完了')
+print('读完了')
 
 # rHandle = open('D:/workspace/python_study/test.txt','r')
 # longest = max(len(x.strip()) for x in rHandle)
-# print 'longest:',longest
+# print('longest:',longest
 
 # aHandle = open('../note.txt', 'r+')  # 在已有内容上追加
 # aHandle.writelines("\nPython代码添加内容到文件中")
 # for eachline in aHandle:
-#     print eachline
+#     print(eachline
 # aHandle.close()
-# print "书写完毕"
+# print("书写完毕"
 
 # ValueError: mode string must begin with one of 'r', 'w', 'a' or 'U', not 'b'
 # try:
@@ -38,28 +38,28 @@ print ('读完了')
 #     rw = open('../test.txt', 'a')
 #     rw.writelines('\n读写模式下，写入新的内容')
 #     for eachline in rw:
-#         print eachline
+#         print(eachline
 #     rw.close()
 # except ValueError , e:
-#     print '文件操作模式出错：',e
+#     print('文件操作模式出错：',e
 # except IOError , e:
-#     print '操作文件出错：',e
+#     print('操作文件出错：',e
 
 
 from operator import add, sub
 nums = [3, 5]
 n = add(*nums)
 m = sub(*nums)
-print (n,m)
+print(n,m)
 
 
 def bar():
     foo()
-    print ('in bar')
+    print('in bar')
 
 def foo():
-    print ('in foo')
+    print('in foo')
 
 obj = dict(name='小明', age=20)
 s = json.dumps(obj, ensure_ascii=True)
-print (s)
+print(s)

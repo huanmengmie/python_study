@@ -11,4 +11,4 @@ import my_class
 # tom.showAge()
 
 my_class.hehe()
-print my_class.Person.age
+print(my_class.Person.age

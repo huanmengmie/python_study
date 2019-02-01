@@ -3,8 +3,8 @@
 from sqlalchemy import Column, Integer, String, select, exists, and_
 from sqlalchemy.orm import relationship
 
-from sqlalchemy_test.model import Base
-from sqlalchemy_test.model.address import Address
+from third_module.sqlalchemy_test import Base
+from third_module.sqlalchemy_test import Address
 
 
 class User(Base):
@@ -26,6 +26,6 @@ class User(Base):
     def find_user_with_email(cls,session,id):
         # ins = session.query(User).filter(exists().where(User.id == Address.user_id))
         # for item in ins:
-        #     print item
+        #     print(item
         ins = select([User]).where(and_(User.id == id,exists().where(User.id == Address.user_id)))
         return session.execute(ins)

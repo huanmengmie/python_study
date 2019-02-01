@@ -13,9 +13,9 @@ def firstLast(webpage):
     f = open(webpage)
     lines = f.readlines()
     f.close()
-    print (firstNonBlank(lines))
+    print(firstNonBlank(lines))
     lines.reverse()
-    print (firstNonBlank(lines))
+    print(firstNonBlank(lines))
 
 
 def download(url = 'https://www.baidu.com/',process = firstLast):
