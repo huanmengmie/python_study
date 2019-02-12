@@ -48,6 +48,7 @@ class Foo(object, metaclass=SingletonType):  # 指定创建Foo的type为Singleto
     def __call__(self, *args, **kwargs):
         print("call方法被调用了")
 
-# obj = Foo('xx')
-# obj()
-# print(Foo.__mro__)
+
+obj = Foo('xx')
+obj()
+print(Foo.__mro__)
