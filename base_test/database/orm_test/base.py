@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from base_test.database.pymysql_test.base import get_cursor
 
 
 class Base(type):
@@ -15,9 +16,6 @@ class Base(type):
         super(Base, cls).__init__(*args, **kwargs)
 
     def __call__(cls, *args, **kwargs):
-        print(cls.__dict__)
-        print(args)
-        print(kwargs)
         obj = cls.__new__(cls, *args, **kwargs)
         cls.__init__(obj, *args, **kwargs)
         return obj
@@ -31,14 +29,21 @@ class Model(object, metaclass=Base):
         for k in self.attrs.keys():
             fields.append(k)
             args.append(getattr(self, k, None))
-
+        args_temp = []
         for v in args:
             if isinstance(v, int):
-                args.append(str(v))
+                args_temp.append(str(v))
             elif isinstance(v, str):
-                args.append("""'%s'""" % v)
-        sql = "insert into %s(%s) values (%s)" % (self.__table_name__, ",".join(fields), ",".join(args))
+                args_temp.append("""'%s'""" % v)
+        sql = "insert into %s(%s) values (%s)" % (self.__table_name__, ",".join(fields), ",".join(args_temp))
         print(sql)
+        return self.execute_insert(sql)
+
+    @staticmethod
+    def execute_insert(sql):
+        with get_cursor() as cursor:
+            cursor.execute(sql)
+
 
 
 class Person(Model):

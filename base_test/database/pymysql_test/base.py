@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from decorator import contextmanager
-from pymysql import Error, connect, Connection
+from pymysql import Error, connect
+from pymysql.connections import Connection
 from pymysql.cursors import Cursor
 
 
