@@ -3,7 +3,7 @@
 from queue import Queue
 from random import randint
 from time import sleep
-from pro.thread.my_thread import MyThread
+from python_study.pro.thread.my_thread import MyThread
 
 
 def writeQ(queue):
