@@ -8,10 +8,16 @@ import tornado.web
 import os.path
 
 from tornado.options import define, options
+
 define("port", default=8000, help="run on the given port", type=int)
 
 
 class IndexHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('index.html')
+
+
+class JsonHandler(tornado.web.RequestHandler):
     def get(self):
         greeting = self.get_argument('greeting', 'Hello')
         self.write(greeting + ', friendly user!')
@@ -27,17 +33,24 @@ class ChildHandler(tornado.web.RequestHandler):
         self.render('child.html')
 
 
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('main.html')
+
+
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     app = tornado.web.Application(
-        handlers=[(r"/", IndexHandler),(r"/parent",ParentHandler),(r"/child",ChildHandler)],
-        template_path = os.path.join(os.path.dirname(__file__),'templates')
+        handlers=[(r"/", IndexHandler),
+                  (r"/parent", ParentHandler),
+                  (r"/test", TestHandler),
+                  (r"/child", ChildHandler)],
+        template_path=os.path.join(os.path.dirname(__file__), 'templates')
     )
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
     print('server start,click http://localhost:%d' % options.port)
     tornado.ioloop.IOLoop.instance().start()
-
 
 # import tornado.ioloop
 # import tornado.web
