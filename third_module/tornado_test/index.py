@@ -14,7 +14,7 @@ define("port", default=8000, help="run on the given port", type=int)
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html')
+        self.render('location.html')
 
 
 class JsonHandler(tornado.web.RequestHandler):
@@ -35,12 +35,13 @@ class ChildHandler(tornado.web.RequestHandler):
 
 class TestHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('main.html')
+        self.render('index.html')
 
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     app = tornado.web.Application(
+        debug=True,
         handlers=[(r"/", IndexHandler),
                   (r"/parent", ParentHandler),
                   (r"/test", TestHandler),
