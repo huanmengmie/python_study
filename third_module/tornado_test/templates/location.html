@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>普通关键字检索</title>
+    <title>定位</title>
     <script type="text/javascript"
             src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
     <script charset="utf-8"
@@ -53,11 +53,13 @@
         if (!pos) {
             getLocation();
         } else {
-            alert(JSON.stringify(pos));
-            console.log(pos, pos.addr);
-            position = pos;
+            // 设置默认中心点
             center = new qq.maps.LatLng(pos.lat, pos.lng);
+            position = pos;
+            // 初始化
             init();
+            // 获取用户地址
+            geocoder.getAddress(new qq.maps.LatLng(pos.lat, pos.lng));
         }
     };
 
@@ -65,9 +67,18 @@
         getLocation();
     };
 
+    // 获取用户定位，重复获取
     function getLocation() {
         geolocation.getLocation(showPosition, showErr, options)
     }
+    // 根据经纬度解析地址
+    geocoder = new qq.maps.Geocoder({
+        complete: function (result) {
+             $("#keyword").val(result.detail.address);
+             searchKeyword();
+        }
+    });
+
 
     function init() {
         var map = new qq.maps.Map(document.getElementById('container'), {
@@ -83,9 +94,9 @@
         var latlngBounds = new qq.maps.LatLngBounds();
         //设置Poi检索服务，用于本地检索、周边检索
         searchService = new qq.maps.SearchService({
-            //设置搜索范围为北京
+            //设置搜索范围为定位城市
             location: position.city,
-            //设置搜索页码为1
+            //设置搜索页码为0
             pageIndex: 0,
             //设置每页的结果数为5
             pageCapacity: 5,
@@ -105,9 +116,7 @@
                         map: map,
                         position: poi.latLng
                     });
-
                     marker.setTitle(i + 1);
-
                     markers.push(marker);
 
                 }
@@ -134,12 +143,13 @@
     function searchKeyword() {
         let keyword = document.getElementById("keyword").value;
         clearOverlays(markers);
-        //根据输入的关键字在指定半径的范围内检索
+        //以定位点为中心半径为5000的范围内检索关键字
         searchService.searchNearBy(keyword, center, 5000);
     }
 
     $("#infoDiv").delegate("ol li", "click", function () {
         let choose = $(this).find("span")[0];
+        alert(choose.innerText);
         console.log(choose.innerText)
     });
 
