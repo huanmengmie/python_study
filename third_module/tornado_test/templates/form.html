@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet" href="css/myAlert.css" />
+    <script type="text/javascript"
+            src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script charset="utf-8"
+            src="https://map.qq.com/api/js?v=2.exp&key=3RQBZ-OT23U-ULRVF-4CNE4-Q3O7Z-SBB4J"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+ 
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+ 
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/myAlert.js" ></script>
+
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+        }
+
+        p {
+            width: 603px;
+            padding-top: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+
+<body onload="getLocation()">
+<div class="form-groupv col-sm-12">
+    <form class="form-horizontal col-sm-12" id="form"  method="post">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="username" name="name" value="" placeholder="请输入姓名">
+            </div>
+            <div class="col-sm-3">
+                <span class="spa spa1"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">手机号</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="phone" id="userphone" value="" placeholder="请输入手机号">
+            </div>
+            <div class="col-sm-3">
+                <span class="spa spa2"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">邮箱</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control"  id="useraddress" name="email" value="" placeholder="请输入邮箱" >
+            </div>
+            <div class="col-sm-3">
+                <span class="spa spa3"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">服务类型</label>
+            <div class="col-sm-6">
+                <select class="form-control" name="type">
+                    <option value="0">请选择服务项</option>
+                    <option value="1">安装预约</option>
+                    <option value="2">售后服务</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+            <div class="col-sm-6">
+                <input class="form-control" id="keyword" name="address" type="textbox" value="" placeholder="请输入地址" >
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-default" onclick="searchKeyword()">搜索</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+                <div class="col-sm-offset-2 col-sm-6" >
+                    <div style="width:100%;height:300px" id="container"></div>
+                </div>
+            </div>
+        </div>
+        
+      
+
+        <div class="form-group" style="padding-top: 70px;">
+            <div class="col-sm-offset-2 col-sm-6">
+                <button type="submit" id="sub" class="btn btn-default">提交</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+
+<script type="text/javascript">
+    //			window.onload=function(){
+    //				$("#username").focus()
+    //			}
+    /************************  失焦判断  **********************************/
+    $(document).ready(function() {
+        $("input").blur(function () {
+            $(".spa").css("color", "#BD362F")
+            if ($(this).is("#username")) {             //姓名判断
+                var na = /^[\u4E00-\u9FA5]{2,4}$/
+                if ($("#username").val() != "") {
+                    if (!(na.test($("#username").val()))) {
+                        $(".spa1").text("请输入2-4个汉字");
+                        $(this).css("border", "1px solid #BD362F")
+                        return false;
+                    } else if (na) {
+                        $(".spa1").text("");
+                        return true;
+                    }
+                } else {
+                    $(".spa1").text("");
+                }
+            }
+            if ($(this).is("#userphone")) {            //手机号判断
+                var ph = /^1[3|5|7|8|][0-9]{9}$/
+                if ($("#userphone").val() != "") {
+                    if (!(ph.test($("#userphone").val()))) {
+                        $(".spa2").text("请输入正确手机号");
+                        $(this).css("border", "1px solid #BD362F")
+                        return false;
+                    } else if (ph) {
+                        $(".spa2").text("");
+                        return true;
+                    }
+                } else {
+                    $(".spa2").text("");
+                }
+            }
+
+            if ($(this).is("#useraddress")) {            //邮箱判断
+                var ad = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+                if ($("#useraddress").val() != "") {
+                    if (!(ad.test($("#useraddress").val()))) {
+                        $(".spa3").text("请输入正确的邮箱");
+                        $(this).css("border", "1px solid #BD362F")
+                        return false;
+                    } else if (ad) {
+                        $(".spa3").text("");
+                        return true;
+                    }
+                } else {
+                    $(".spa3").text("");
+                }
+            }
+        })
+        /********************** 聚焦提示 ************************/
+        $("input").focus(function () {
+            if ($(this).is("#username")) {
+                $(".spa1").text("2-4个汉字").css("color", "#aaa")
+                $(this).css("border", "1px solid #aaa")
+            }
+            if ($(this).is("#userphone")) {
+                $(".spa2").text("11位手机号码").css("color", "#aaa")
+                $(this).css("border", "1px solid #aaa")
+            }
+            if ($(this).is("#useraddress")) {
+                $(".spa3").text("请输入邮箱").css("color", "#aaa")
+                $(this).css("border", "1px solid #aaa")
+            }
+        })
+        /*********************** 提交验证 ***************************/
+        $("#sub").click(function () {
+            var b;
+            var na = /^[\u4E00-\u9FA5]{2,4}$/;   //姓名正则
+            var ph = /^1[3|5|7|8|][0-9]{9}$/;    //手机号正则
+            var re = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;    //邮箱正则
+            if (na.test($("#username").val()) && ph.test($("#userphone").val()) && re.test($("#useraddress").val())) {
+                b = true;
+            } else {
+                if ($("#username").val() == "") {
+                    $(".spa1").text('请你填写用户名')
+                }
+                if ($("#userphone").val() == "") {
+                    $(".spa2").text('请你填写手机号')
+                }
+                if ($("#useraddress").val() == "") {
+                    $(".spa3").text('请你填写邮箱')
+                }
+                b = false;
+            }
+            // if (b) {
+            //     loading();
+            //     $('#loading').hide();
+            //     //为ajax绑定loading_bottom
+            //     $(document).ajaxStart(function () {
+            //         $("#loading").show();//在ajax请求开始的时候启用loading
+            //     }).ajaxStop(function () {
+            //         $('#loading').hide();//在ajax请求结束后隐藏loading
+            //     });
+                $.ajax({
+                    url: 'innert.do',
+                    type: 'POST', //GET
+                    async: true,
+                    data: $('#form').serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        //alert(data)
+
+
+                        if (data.code == -1) {
+                            alert(data.msg);
+                            //alert(data.msg);
+                            // myAlert({
+                            //     title: '提示', message: data.msg, callback: function () {
+                            //     }
+                          //  });
+                        } else {
+                            alert(data.msg);
+                            // myAlert({
+                            //     title: '提示', message: data.msg, callback: function () {
+                            //     }
+                         //   });
+                            //window.location.href="lock.do";
+                        }
+
+                    },
+                });
+
+            })
+    });
+
+    //		$(function(){
+    //			$('select').searchableSelect();
+    //		});
+
+</script>
+
+</body>
+
+</html>
