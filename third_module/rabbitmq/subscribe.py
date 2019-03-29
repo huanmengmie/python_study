@@ -13,7 +13,7 @@ class RmqSubscribe(object):
         :param prefetch_count: rmq默认轮循分配任务，设置prefetch_count=1时，正在执行任务的consumer不会分配task
         :param no_ack:
         """
-        self.__connection_param = pika.ConnectionParameters(host="localhost", port=5672,
+        self.__connection_param = pika.ConnectionParameters(host="192.168.153.129", port=5672,
                                                             connection_attempts=10000, retry_delay=5)
         self.__connection = None
         self.__channel = None
@@ -57,12 +57,12 @@ class RmqSubscribe(object):
             self.start()
 
 
-def test(body, delivery_tag):
+def log(body, delivery_tag):
     print("body => ", body)
     print("delivery_tag => ", delivery_tag)
 
 
 if __name__ == '__main__':
     print("准备消费 ")
-    rmc = RmqSubscribe("hello", test)
+    rmc = RmqSubscribe("hello", log)
     rmc.start()

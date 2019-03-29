@@ -5,7 +5,7 @@ from pika.exceptions import AMQPError
 
 class RmqPublish(object):
     def __init__(self):
-        self.__connection_param = pika.ConnectionParameters(host="localhost", port=5672,
+        self.__connection_param = pika.ConnectionParameters(host="192.168.153.129", port=5672,
                                                             connection_attempts=10000, retry_delay=5)
         self.__connection = None
         self.__channel = None
