@@ -1,4 +1,15 @@
 # -*- coding: utf-8 -*-
+
+"""
+    exchange type:
+                fanout（群发）: 扇形，无脑群发
+                direct（选择）: 根据routing key 进行匹配，发给匹配的subscribe
+                topic（主题）： 将routing_key与消息内容匹配
+                            * 表示一个字符       # 表示0或多个字符
+                            单用#时，相当于订阅所有队列，与fanout类型相似
+                            * 和 # 都不用时，指定key ，与direct类型相似
+
+"""
 import pika
 from pika.exceptions import AMQPError
 
@@ -37,9 +48,34 @@ class RmqPublish(object):
             self.__connection.close()
 
 
-if __name__ == '__main__':
+def pub_fanout():
     print("开始生产")
     rmp = RmqPublish()
     for i in range(100):
-        rmp.send("%d条信息" % i, routing_key="", exchange_type="log")
+        rmp.send("%d条信息" % i, routing_key="", exchange_name="log")
     rmp.close()
+
+
+def pub_direct(routing_key, msg):
+    print("开始生产")
+    rmp = RmqPublish()
+    for i in range(100):
+        rmp.send("%d条信息%s" % (i, msg), routing_key=routing_key, exchange_name="direct_log", exchange_type="direct")
+    rmp.close()
+
+
+def pub_topic(routing_key, msg):
+    print("开始生产")
+    rmp = RmqPublish()
+    for i in range(100):
+        rmp.send("%d条信息%s" % (i, msg), routing_key=routing_key, exchange_name="topic_log", exchange_type="topic")
+    rmp.close()
+
+if __name__ == '__main__':
+    # pub_fanout()
+
+    # pub_direct("a", "哈哈哈")
+    # pub_direct("b", "吼吼吼")
+
+    pub_topic("a.b.c", "啊啊啊啊")
+    pub_topic("hello.b", "呃呃呃")
