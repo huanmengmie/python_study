@@ -43,6 +43,11 @@ class RmqConsumer(object):
         if self.__process_func:
             self.__process_func(body, method.delivery_tag)
 
+    def send_ack(self, delivery_tag):
+        # 消息确认（设置no_ack=False时调用）
+        if not self.__no_ack:
+            self.__channel.basic_ack(delivery_tag=delivery_tag)
+
     def start(self):
         try:
             self.__channel.start_consuming()
