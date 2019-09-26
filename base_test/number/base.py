@@ -70,3 +70,20 @@
 #  仅用于整型的函数
 #  进制转换 oct()转8进制， hex()转16进制
 #  ASCII转换   chr()整型转字符，ord()字符转整型
+
+
+
+n, s, r = 2, 0, None
+m = 0
+while not r:
+    for si in range(9, -1, -1):
+        nx = n - ((2 * s * 10 + si) * si)
+        if nx >= 0:
+            s = s * 10 + si
+            n = nx * 100
+            m += 1
+            print(m)
+            if len(str(si)) >= 1000001:
+                r = str(si)[-1]
+            break
+print(r)
