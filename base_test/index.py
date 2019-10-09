@@ -158,6 +158,9 @@
 # print(x,y,z,x==y==z
 # 多元赋值：   变量交换
 # x,y,z = 1, 3, 'ab'
-# print(x, y, z
+# print(x, y, z)
 # x,y = y,x
-# print(x,y,z
+# print(x,y,z)
+
+# 获取键盘的code
+print(ord("s"))
