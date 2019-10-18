@@ -27,10 +27,10 @@ def calc():
 
 
 def image_test():
-    img = cv2.imread("7.jpg", cv2.IMREAD_COLOR)
+    img = cv2.imread("img/frame293.jpg", cv2.IMREAD_COLOR)
     cv2.imshow("imread_color", img)
 
-    img1 = cv2.imread("7.jpg", cv2.IMREAD_GRAYSCALE)
+    img1 = cv2.imread("img/frame256.jpg", cv2.IMREAD_GRAYSCALE)
     cv2.imshow("imread_grayscale", img1)
     cv2.imwrite("copy_gray_file.png", img1)
 
@@ -64,7 +64,6 @@ def video_camera_test():
 def video_file_test():
     cap = cv2.VideoCapture("test.mp4")
     print(cap.get(cv2.CAP_PROP_FRAME_WIDTH), cap.get(cv2.CAP_PROP_FRAME_HEIGHT), cap.get(cv2.CAP_PROP_FRAME_COUNT))
-
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -79,10 +78,10 @@ def video_file_test():
 
 
 def save_camera_file():
-    cap = cv2.VideoCapture("test.mp4")
+    cap = cv2.VideoCapture("10.mp4")
     # Define the codec and create VideoWriter object
     fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-    out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (640, 480))
+    out = cv2.VideoWriter('102.mp4', fourcc, 20.0, (640, 480))
     while cap.isOpened():
         ret, frame = cap.read()
         if ret:
@@ -100,8 +99,22 @@ def save_camera_file():
     cv2.destroyAllWindows()
 
 
+def img_append_sth():
+    img = cv2.imread("start.png", cv2.IMREAD_COLOR)
+    height, width = img.shape[0], img.shape[1]
+    cv2.rectangle(img, (0, height - 30), (width, height), (0, 0, 0), 30)
+
+    cv2.imshow("imread_color", img)
+
+    # 官方建议： 64位机器上使用 cv2.waitKey(0) & 0xff
+    b = cv2.waitKey(0) & 0xff  # 敲击任意按键，程序继续运行， 返回键盘码
+    print(b)
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
     # image_test()
     # save_camera_file()
+    img_append_sth()
     pass
 
