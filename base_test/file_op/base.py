@@ -9,7 +9,8 @@
 # aHandle.close()
 # print("书写完毕"
 
-wHandle = open('../test.txt','w')  # 覆盖原有内容
+wHandle = open('./test.txt','w', encoding="utf8")  # 覆盖原有内容
+wHandle.writelines("Python代码写内容到文件中")
 wHandle.writelines("Python代码写内容到文件中")
 wHandle.close()
 
