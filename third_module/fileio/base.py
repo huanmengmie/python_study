@@ -10,18 +10,18 @@ import shutil
 # aHandle.close()
 # print("书写完毕")
 
-# wHandle = open('../test.txt','w')  # 覆盖原有内容
+# wHandle = open('../calc_time.py.txt','w')  # 覆盖原有内容
 # wHandle.writelines("Python代码写内容到文件中")
 # wHandle.close()
 
-rHandle = open('D:/workspace/python_study/test.txt','r',encoding="utf8")
+rHandle = open('D:/workspace/python_study/calc_time.py.txt','r',encoding="utf8")
 for line in rHandle.readlines():
     print(line.strip()),      # 加“，”可以抑制其自动生成换行符号
 print(rHandle.read())
 rHandle.close()
 print('读完了')
 
-# rHandle = open('D:/workspace/python_study/test.txt','r')
+# rHandle = open('D:/workspace/python_study/calc_time.py.txt','r')
 # longest = max(len(x.strip()) for x in rHandle)
 # print('longest:',longest
 
@@ -34,8 +34,8 @@ print('读完了')
 
 # ValueError: mode string must begin with one of 'r', 'w', 'a' or 'U', not 'b'
 # try:
-#     # rw = open('../test.txt','b')
-#     rw = open('../test.txt', 'a')
+#     # rw = open('../calc_time.py.txt','b')
+#     rw = open('../calc_time.py.txt', 'a')
 #     rw.writelines('\n读写模式下，写入新的内容')
 #     for eachline in rw:
 #         print(eachline

@@ -7,23 +7,23 @@ import my_class
 tom = my_class.Person('tom')
 tom.showAge()
 # dir()显示对象属性
-print('dir()方法',dir(tom)
+print('dir()方法',dir(tom))
 # help()显示对象的文档字符串，API文档。在终端使用
 # int() 将对象转换为整型
-print('int和str比较', 16 == '16'
-print('int()方法',16 == int('16')
+print('int和str比较', 16 == '16')
+print('int()方法',16 == int('16'))
 # str() 将对象转换为字符串
-print('str()方法','18' == str(18)
+print('str()方法','18' == str(18))
 # len() 对象长度
-print('len()方法',len('asdfgd')
+print('len()方法',len('asdfgd'))
 # open() 文件读写操作
 # range(start,stop,step) 返回一个整型列表
-print('range()方法',range(1,6,2)
+print('range()方法',range(1,6,2))
 # type() 返回对象类型
-print('type()方法',type(22),type('sdf')
+print('type()方法',type(22),type('sdf'))
 # input() 从控制台输入信息，默认为String类型
 str = input('随便写点什么：')
-print('你输入的是',str
+print('你输入的是',str)
 
 
 def add(x, y):
@@ -31,15 +31,15 @@ def add(x, y):
     return x + y
 
 
-print(add(3, 5)
+print(add(3, 5))
 
 
 def factorial(debug=True):
     """x的y次方"""
     if debug :
-        print('debug模式'
+        print('debug模式')
     else:
-        print('生产模式'
+        print('生产模式')
 
 
 factorial()

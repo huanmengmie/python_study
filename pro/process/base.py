@@ -16,14 +16,14 @@ def run_proc(name):
 
 def single_test():
     print("主进程 %s" % os.getpid())
-    p = Process(target=run_proc, args=("test",))
+    p = Process(target=run_proc, args=("calc_time.py",))
     print("子进程开始")
     p.start()
     p.join()
     print("子进程结束")
 
 
-# pool test
+# pool calc_time.py
 def long_time_task(task):
     print("任务%s=>%s开始了" % (task, os.getpid()))
     try:

@@ -16,7 +16,7 @@ print(fdict3)        # =>  {'y': 2, 'x': 1}
 ddict = {}.fromkeys(('x','y','z'),-1)
 print(ddict)         # =>    {'y': -1, 'x': -1, 'z': -1}
 
-dic = {None: 'test','test':None}
+dic = {None: 'calc_time.py','calc_time.py':None}
 print(dic)
 
 # 字典中key和value都可以为None值，但是其key不允许重复，且必须为数字和字符串等可以哈希的对象，而不能使用列表和字典

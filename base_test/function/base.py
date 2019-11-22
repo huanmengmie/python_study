@@ -14,12 +14,12 @@
 # def foo():
 #     pass
 #
-# def test():
+# def calc_time.py():
 #     pass
 #
 #
 # print(foo
-# print(test
+# print(calc_time.py
 #
 #
 # foo()

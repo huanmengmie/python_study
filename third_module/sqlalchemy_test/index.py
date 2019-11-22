@@ -23,7 +23,7 @@ DbSession = sessionmaker(bind = engine)
 session = DbSession()
 
 # 添加方法
-# user = User(name='test', fullname='EdJones', password='edspassword')
+# user = User(name='calc_time.py', fullname='EdJones', password='edspassword')
 # user.addresses = [Address(email_address='jack@google.com'),
 #                 Address(email_address='j25@yahoo.com')]
 # session.add(user)
@@ -32,7 +32,7 @@ session = DbSession()
 #                  User(name='东哥',fullname='辰东',password='123456'),
 #                  User(name='土豆',fullname='天蚕土豆',password='123456')])
 #
-# user.name = 'test'
+# user.name = 'calc_time.py'
 #
 # print('dirty',session.dirty
 # print('new',session.new

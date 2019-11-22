@@ -5,5 +5,5 @@
 
 routers = [
     ("/index", "/index.html"),
-    ("/test/hello", "/hello.html"),
+    ("/calc_time.py/hello", "/hello.html"),
 ]

@@ -33,7 +33,7 @@ class File(object):
 
 
 def test_method():
-    with File('test.txt', 'r') as f:
+    with File('calc_time.py.txt', 'r') as f:
         f.read()
 
 
@@ -54,7 +54,7 @@ def open_file(file_name, mode):
 
 
 def test_context_manager():
-    with open_file('test.txt', 'r') as f:
+    with open_file('calc_time.py.txt', 'r') as f:
         f.read()
         time.sleep(2)
 

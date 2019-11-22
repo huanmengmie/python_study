@@ -41,7 +41,7 @@ def check_color():
     high_hsv = np.array([180, 255, 46])
     mask = cv2.inRange(hsv, lowerb=low_hsv, upperb=high_hsv)
     print("没有找到" if np.all(mask == 0) else "找到了")
-    cv2.imshow("test", mask)
+    cv2.imshow("calc_time.py", mask)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 

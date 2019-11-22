@@ -14,7 +14,7 @@ wHandle.writelines("Python代码写内容到文件中")
 wHandle.writelines("Python代码写内容到文件中")
 wHandle.close()
 
-# rHandle = open('D:/workspace/python_study/test.txt','r')
+# rHandle = open('D:/workspace/python_study/calc_time.py.txt','r')
 # for eachline in rHandle:
 #     print(eachline,       # 加“，”可以抑制其自动生成换行符号
 # rHandle.close()
@@ -24,8 +24,8 @@ wHandle.close()
 
 # ValueError: mode string must begin with one of 'r', 'w', 'a' or 'U', not 'b'
 # try:
-#     # rw = open('../test.txt','b')
-#     rw = open('../test.txt', 'a')
+#     # rw = open('../calc_time.py.txt','b')
+#     rw = open('../calc_time.py.txt', 'a')
 #     rw.writelines('\n读写模式下，写入新的内容')
 #     for eachline in rw:
 #         print(eachline

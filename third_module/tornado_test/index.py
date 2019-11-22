@@ -44,7 +44,7 @@ if __name__ == "__main__":
         debug=True,
         handlers=[(r"/", IndexHandler),
                   (r"/parent", ParentHandler),
-                  (r"/test", TestHandler),
+                  (r"/calc_time.py", TestHandler),
                   (r"/child", ChildHandler)],
         template_path=os.path.join(os.path.dirname(__file__), 'templates')
     )
