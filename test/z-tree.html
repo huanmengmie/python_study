@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE> ZTREE DEMO </TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="./zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="./zTree_v3/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="./zTree_v3/js/jquery.ztree.all.js"></script>
+    <!--
+      <script type="text/javascript" src="jquery.ztree.excheck.js"></script>
+      <script type="text/javascript" src="jquery.ztree.exedit.js"></script>
+    -->
+    <SCRIPT type="text/javascript">
+        var zTreeObj,
+            setting = {
+                treeId: "tree",
+                check: {
+                    enable: true,
+                    chkStyle: "checkbox",
+                    chkboxType: {"Y": "ps", "N": "ps"}
+                }
+            },
+            zTreeNodes = [
+                {
+                    "name": "网站导航", open: true, children: [
+                        {"name": "google"},
+                        {"name": "baidu"},
+                        {"name": "sina"},
+                        {
+                            "name": "网站导航2", open: true, nocheck: true, children: [
+                                {"name": "谷歌"},
+                                {"name": "baidu"},
+                                {"name": "sina"}
+                            ]
+                        }
+                    ]
+                }
+            ];
+
+        $(document).ready(function () {
+            zTreeObj = $.fn.zTree.init($("#tree"), setting, zTreeNodes);
+            $("#test").click(function () {
+                let all = zTreeObj.getNodes();
+                let selected = zTreeObj.getCheckedNodes();
+                console.log(selected)
+                console.log(all)
+            })
+        });
+    </SCRIPT>
+</HEAD>
+
+<BODY>
+<ul id="tree" class="ztree" style="width:230px; overflow:auto;"></ul>
+
+<button id="test">测试</button>
+</BODY>
+</HTML>
