@@ -20,7 +20,7 @@ def count_time(func):
     return handle
 
 
-# 语法糖 @count_time  等效于  calc_time.py = count_time(calc_time.py)
+# 语法糖 @count_time  等效于  test = count_time(test)
 def test():
     for i in range(50):
         print(pow(i, 3), end="\t")
