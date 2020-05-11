@@ -4,7 +4,7 @@ from pika.exceptions import AMQPError
 
 
 class RpcServer(object):
-    def __init__(self, queue_name="",prefetch_count=1):
+    def __init__(self, queue_name="", prefetch_count=1):
         self.__connection_param = pika.ConnectionParameters(host="localhost", port=5672,
                                                             connection_attempts=10000, retry_delay=5)
         self.__connection = None
@@ -19,7 +19,7 @@ class RpcServer(object):
             self.__channel = self.__connection.channel()
             self.__channel.queue_declare(queue=self.__queue_name)
             self.__channel.basic_qos(prefetch_count=self.__prefetch_count)
-            self.__channel.basic_consume(queue=self.__queue_name, consumer_callback=self._on_request)
+            self.__channel.basic_consume(queue=self.__queue_name, on_message_callback=self._on_request)
 
     def _on_request(self, ch, method, props, body):
         n = int(body)
