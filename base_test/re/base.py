@@ -33,4 +33,4 @@ def complex_re():
 
 
 if __name__ == '__main__':
-    complex_re()
+    re_test()

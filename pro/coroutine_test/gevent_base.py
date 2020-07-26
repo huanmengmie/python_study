@@ -2,6 +2,8 @@
 """
     gevent 基于 greenlet的协程实现
 """
+from queue import Queue
+
 import gevent
 
 
